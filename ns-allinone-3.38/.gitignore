@@ -57,3 +57,5 @@ ns-3.38/cmake-cache/src/wimax/CMakeFiles/libwimax-obj.dir/compiler_depend.make
 ns-3.38/cmake-cache/utils/CMakeFiles/bench-packets.dir/compiler_depend.make
 ns-3.38/cmake-cache/utils/CMakeFiles/bench-scheduler.dir/compiler_depend.make
 ns-3.38/cmake-cache/utils/CMakeFiles/perf-io.dir/compiler_depend.make
+ns-3.38/mix/mix.tr
+ns-3.38/mix/rhy_test.txt
