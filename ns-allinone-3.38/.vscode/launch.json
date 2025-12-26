@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch third with config", // 调试配置的名称
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/scratch/ns3.38-third-debug", // 重点：根据实际生成的可执行文件修改"ns3.38"版本号
+            "args": ["mix/config.txt"], // 传递给程序的参数，即你的配置文件
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}", // 工作目录设为项目根目录
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH", // 确保运行时能找到NS-3的库
+                    "value": "${workspaceFolder}/build/lib"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "ns3 run third", // 重点：必须与tasks.json中定义的label完全一致
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

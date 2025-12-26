@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "ns3 run third", // 给这个任务起个名字，launch.json会调用它
+            "type": "shell", // 因为是在shell中执行命令
+            "command": "./ns3", // 运行ns3脚本
+            "args": [
+                "build", // 先编译
+                "run", 
+                "scratch/third", // 你的仿真脚本
+                "--",
+                "mix/config.txt" // 你的配置文件
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always", // 在执行时显示终端面板
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

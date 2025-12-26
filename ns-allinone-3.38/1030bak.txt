@@ -1,0 +1,20 @@
+备份日期：2025年10月30日
+运行路径：/home/usr/ns3-in-one/ns-allinone-3.38/ns-3.38
+配置：
+    ./ns3 configure     
+    ./ns3 configure -- -DNS3_SANITIZE=ON（打开内存检测开关）
+编译：./ns3 build -j4
+运行：
+    ./ns3 run 'scratch/third' -- mix/config.txt
+    ASAN_OPTIONS=detect_leaks=0 ./ns3 run 'scratch/third' -- mix/config.txt     (屏蔽内存泄漏检查)
+debug模式：./ns3 run "scratch/third" --command-template="gdb --args %s mix/config.txt"
+
+调试进度：屏蔽内存泄漏问题可以正常生成mix.tr(trace文件)，文件中节点发送接收等行为符合仿真设置。修改仿真流大小发现
+
+trace文件解析：
+    路径：/home/user/ns3-in-one/ns-allinone-3.38/HPCC/analysis/trace_reader.cpp
+    编译：make
+    执行：./trace_reader /home/user/ns3-in-one/ns-allinone-3.38/ns-3.38/mix/mix.tr > test1.txt
+
+当前的问题：
+    修改仿真流大小发现大流20000000发送未完成，小流1000可以发送完成但是fct.txt文件生成失败——qp_finish()接口调用失败，RDMAqp中包含内存泄漏，需要解决内存泄漏问题生成fct文件。
